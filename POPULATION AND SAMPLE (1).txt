@@ -1,0 +1,70 @@
+import numpy as np
+import pandas as pd
+
+time2reach =  {"Distance":[10,15,20,25,30,35,40,45,50,55],
+               "TimeToReach":[15,20,25,30,40,45,50,60,65,70]};
+
+dataFrame = pd.DataFrame(data=time2reach);
+
+w = pd.Series(data=[0.05, 0.05, 0.05,
+                    0.05, 0.05, 0.1,
+                    0.15, 0.15, 0.15,
+                    0.2]);
+
+def weighted_random_sample(dataframe, weight):
+   weight = weight / weight.sum()
+   random_value = np.random.random()
+   cumulative_sum = weight.cumsum()
+   index = (random_value < cumulative_sum).idxmax()
+   return dataframe.iloc[index]
+
+sample = weighted_random_sample(dataFrame, w)
+print(sample)
+
+
+2
+
+import pandas as pd
+
+data = pd.read_csv("C:/Users/alias/Downloads/Compressed/archive_6/dc-wikia-data.csv")
+
+sample_size = 0.1 # 10% of the population
+
+sample = data.sample(frac=sample_size)
+
+print(sample)
+
+3
+
+import pandas as pds
+callTimes = {"Age": [20,25,31,37,43,44,52,58,64,68,70,77,82,86,91,96],
+            "Call Duration":[17,25,10,15,5,7,15,25,30,35,10,15,12,14,20,12]};
+dataFrame = pds.DataFrame(data=callTimes);
+
+sample = dataFrame.sample(n=5)
+
+print(sample)
+
+4
+
+import random
+
+population = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
+start = random.randint(0, len(population) - 1)
+sampling_interval = 10
+sample = population[start::sampling_interval]
+
+print(sample)
+
+5
+
+import pandas as pd
+df=pd.read_csv("C:/Users/alias/Downloads/Compressed/archive_7/Employee_monthly_salary.csv")
+import pandas as pd
+
+data = pd.read_csv("C:/Users/alias/Downloads/Compressed/archive_7/Employee_monthly_salary.csv")
+
+sample = data.sample(n=200)
+
+print(sample)
